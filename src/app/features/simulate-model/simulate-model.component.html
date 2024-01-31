@@ -1,0 +1,117 @@
+<div class="left">
+    <div class="menu-container">
+        <div class="menu">
+            <div class="menu-header">
+                Gate Definition
+            </div>
+            <div class="menu-item" (click)="setNav('gate-type')">Gate Types</div>
+            <div class="menu-item" (click)="setNav('gate-pulse')">Gate Pulse</div>
+        </div>
+        <div class="menu">
+            <div class="menu-header">
+                Performance Metrics
+            </div>
+            <div class="menu-item">Metric Type</div>
+        </div>
+        <div class="menu">
+            <div class="menu-item">Simulate</div>
+        </div>
+    </div>
+</div>
+<canvas-view [selectedQudit]="selectedQudit" [selectedQuditToCouple]="selectedQuditToCouple"
+    [couplingMode]="couplingMode">
+</canvas-view>
+<div class="setting-tab" *ngIf="nav == 'gate-type'">
+    <div class="tab-header">
+        Gate Types
+    </div>
+    <div class="tab-content">
+        <div class="settings-container" *ngFor="let q of coreService.qudits">
+            <div class="index">{{ 'q' + (q.id + 1)}}</div>
+            <div class="setting-container">
+                <div class="setting-title">Initial State</div>
+                <div class="initialization-setting" *ngFor="let level of q.initialization_parameter; let i = index">
+                    <span>(</span>
+                    <input type="number" [(ngModel)]="q.initialization_parameter[i].real" (change)='test(q, i)'>
+                    <span class="operator">+</span>
+                    <input type="number" [(ngModel)]="q.initialization_parameter[i].imaginary">
+                    <span>i )</span>
+                    <span class="level">| {{i}} ></span>
+                </div>
+            </div>
+            <div class="setting-container">
+                <div class="setting-title">Gate Type</div>
+                <div class="gate-container">
+                    <div class="line"></div>
+                    <div class="gate">I</div>
+                    <div class="line line-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="setting-tab" *ngIf="nav == 'gate-pulse'">
+    <div class="tab-header">
+        Gate Pulse
+    </div>
+    <div class="tab-content">
+        <div class="settings-container">
+            <div class="setting-container">
+                <div class="setting-title">x-drive</div>
+                <div class="setting">
+                    <select class="dropdown">
+                        <option value="gaussian">Gaussian</option>
+                        <option value="Squared">Squared</option>
+                    </select>
+                </div>
+                <div class="settings-container sub">
+                    <div class="setting-container">
+                        <div class="setting-title">Amplitude</div>
+                        <div class="setting">
+                            <input type="number" step="0.01" />
+                            <span class="unit">GHz</span>
+                        </div>
+                    </div>
+                    <div class="setting-container">
+                        <div class="setting-title">μ</div>
+                        <div class="setting">
+                            <input type="number" step="0.01" />
+                            <!-- <span class="unit"></span> -->
+                        </div>
+                    </div>
+                    <div class="setting-container">
+                        <div class="setting-title">Σ</div>
+                        <div class="setting">
+                            <input type="number" step="0.01" />
+                            <!-- <span class="unit"></span> -->
+                        </div>
+                    </div>
+                    <div class="setting-container">
+                        <div class="setting-title">v shift</div>
+                        <div class="setting">
+                            <input type="number" step="0.01" />
+                            <span class="unit">x 10<sup>-4</sup></span>
+                        </div>
+                    </div>
+                    <div class="setting-container">
+                        <div class="setting-title">range</div>
+                        <div class="setting">
+                            <input type="number" step="1" />
+                            <span class="unit range">≤ t ≤</span>
+                            <input type="number" step="1" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="setting-container">
+                <div class="setting-title">y-drive</div>
+                <div class="setting">
+                    <select class="dropdown">
+                        <option value="gaussian">Gaussian</option>
+                        <option value="Squared">Squared</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+:host {
+    cursor: pointer;
+    position: absolute;
+    svg {
+        position: absolute;
+    }
+    .arrowhead {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 8px solid black;
+        top: -8px;
+        left: calc(50% - 5px);
+    }
+
+    .arrowhead:after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        border-bottom: 6px solid white;
+        top: 1px;
+        left: 1px;
+    }
+}

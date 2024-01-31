@@ -1,0 +1,13 @@
+<!-- <svg [attr.width]="getArrowWidth()" [attr.height]="getArrowHeight()" (click)="test()">
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7"></polygon>
+        </marker>
+    </defs>
+    <line [attr.x1]="coupling.qudit1.position.x" [attr.y1]="coupling.qudit1.position.y"
+        [attr.x2]="coupling.qudit2.position.x" [attr.y2]="coupling.qudit2.position.y"
+        style="stroke: white; stroke-width: 2; marker-start: url(#arrowhead); marker-end: url(#arrowhead);">
+    </line>
+</svg> -->
+<div [ngStyle]="lineStyles">
+</div>

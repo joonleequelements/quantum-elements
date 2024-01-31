@@ -1,0 +1,161 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    .left {
+        width: 20%;
+        height: 100%;
+        background-color: var(--fillColorSecondary);
+        padding: 1rem;
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            row-gap: 3rem;
+            background-color: var(--fillBgColor);
+            .menu {
+                display: flex;
+                flex-direction: column;
+                row-gap: 1.5rem;
+                .menu-header {
+                    color: #858585;
+                    font-size: 0.8rem;
+                }
+                .menu-item {
+                    margin-left: 0.5rem;
+                    font-size: 1rem;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    canvas-view {
+        flex: 1;
+    }
+    .setting-tab {
+        width: 25%;
+        height: 100%;
+        background-color: var(--fillColorSecondary);
+        display: flex;
+        flex-direction: column;
+        .tab-header {
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid hsla(0, 0%, 100%, 0.1);
+            font-weight: bold;
+            .btn {
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.3);
+                }
+                margin-left: auto;
+                background-color: var(--fillBgColor);
+                color: white;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 1rem 1.5rem;
+                border-radius: 0.8rem;
+                cursor: pointer;
+                transition: all 0.2s ease-in-out;
+            }
+        }
+        .tab-content {
+            flex: 1;
+            margin: 1rem;
+            padding: 1rem;
+            background-color: var(--fillBgColor);
+            display: flex;
+            flex-direction: column;
+            row-gap: 1rem;
+            align-items: center;
+            .setting-container {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                row-gap: 1rem;
+                .add-bath {
+                    &:hover {
+                        opacity: 0.8;
+                    }
+                    width: 100%;
+                    height: 3rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 1px solid white;
+                    border-radius: 0.5rem;
+                }
+                .setting-title {
+                    font-size: 0.8rem;
+                }
+                .bath-settings {
+                    display: flex;
+                    align-items: center;
+                    column-gap: 1rem;
+                    background-color: #001f5e;
+                    padding: 1rem;
+                    border-radius: 0.8rem;
+                }
+                .setting {
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    column-gap: 1rem;
+                    &.col {
+                        flex-direction: column;
+                        row-gap: 1rem;
+                    }
+                    input {
+                        background-color: #001f5e;
+                        color: white;
+                        border: none;
+                        border-radius: 0.8rem;
+                        padding: 1rem;
+                        display: block;
+                        -webkit-appearance: none;
+                        flex: 1;
+                        box-sizing: border-box;
+                        width: 80%;
+                    }
+
+                    .dropdown {
+                        width: 100%;
+                        background-color: #001f5e;
+                        color: white;
+                        border: none;
+                        -webkit-appearance: none;
+                        border-radius: 0.8rem;
+                        padding: 1rem;
+                        display: block;
+                    }
+                    .unit {
+                        flex: 0.1;
+                    }
+                    mat-checkbox {
+                        width: 100%;
+                        ::ng-deep .mdc-form-field {
+                            color: #fff;
+                        }
+                        ::ng-deep .mdc-checkbox__background {
+                            border-color: #fff;
+                            background-color: transparent;
+                        }
+                        ::ng-deep .mdc-checkbox__ripple {
+                            display: none !important;
+                        }
+                    }
+                    select {
+                        background-color: #001f5e;
+                        color: white;
+                        border: none;
+                        border-radius: 0.8rem;
+                        padding: 1rem;
+                        display: block;
+                        -webkit-appearance: none;
+                        flex: 1;
+                        box-sizing: border-box;
+                    }
+                }
+            }
+        }
+    }
+}
