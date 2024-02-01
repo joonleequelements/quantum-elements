@@ -1,6 +1,6 @@
 import { QuditClass } from './../../core/interface';
 import { CdkDrag } from '@angular/cdk/drag-drop';
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input } from '@angular/core';
 
 @Component({
   selector: 'qudit',
@@ -11,4 +11,5 @@ import { Component, Input } from '@angular/core';
 })
 export class QuditComponent {
   @Input() qudit: QuditClass
+  constructor(public elementRef: ElementRef) { }
 }

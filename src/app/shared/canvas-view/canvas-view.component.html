@@ -1,5 +1,5 @@
 <div class="canvas" (click)="quditSelected.emit()">
-    <qudit id="{{ 'q' + i + 1}}" [class.active]="selectedQudit === q || selectedQuditToCouple.includes(q)"
+    <qudit id="{{ 'q' + (i + 1)}}" [class.active]="selectedQudit === q || selectedQuditToCouple.includes(q)"
         cdkDragBoundary=".canvas" cdkDrag [qudit]="q" *ngFor="let q of coreService.qudits; let i = index"
         (cdkDragEnded)="updateQuditPosition(q, $event)" (click)="quditSelected.emit(q); $event.stopPropagation()">
     </qudit>

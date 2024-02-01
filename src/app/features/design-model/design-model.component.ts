@@ -43,7 +43,6 @@ export class DesignModelComponent {
   }
   couplingSelected(coupling: CouplingClass) {
     this.selectedCoupling = coupling
-    console.log(this.selectedCoupling)
     this.selectedQudit = null
   }
   deleteQudit() {

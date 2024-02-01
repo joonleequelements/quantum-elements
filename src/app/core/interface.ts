@@ -20,11 +20,11 @@ export class OhmicBathClass implements OhmicBath {
     type: BathType = BathType.Ohmic;
     axis: RotationalAxis;
     strength: number;
-    exp: number = 10e-4;
+    exp: number = 1e-5;
     frequency: number;
     temperature: number;
     constructor(axis = RotationalAxis.Z,
-        strength = 0.11764967334034104,
+        strength = 1.1764967334034104,
         frequency = 2,
         temperature = 20) {
         this.axis = axis;
@@ -81,7 +81,7 @@ export class LindbladBathClass implements LindbladBath {
     type: BathType = BathType.Lindblad;
     axis: RotationalAxis;
     gamma: number;
-    exp: number = 10e-4;
+    exp: number = 1e-4;
     operator: LindbladOperator;
     constructor(axis = RotationalAxis.X,
         gamma = 0.11764967334034104,
@@ -111,6 +111,8 @@ export interface Qudit {
     anharmonicity?: number;
     bath?: any[];
     initialization_parameter?: ComplexNumber[];
+    drive_freq?: number;
+    drives?: any[];
     position?: { x: number, y: number };
 }
 
@@ -121,6 +123,8 @@ export class QuditClass implements Qudit {
     anharmonicity: number;
     bath: any[];
     initialization_parameter: ComplexNumber[];
+    drive_freq: number;
+    drives: any[];
     position: { x: number, y: number };
 
     constructor(
@@ -141,18 +145,19 @@ export class QuditClass implements Qudit {
     }
 
     toJSON(): any {
-        let name = `qudit_${this.id}`
-        return {
+        let name = `qudit_${this.id + 1}`
+        const jsonObject = {
             [name]: {
-                id: this.id,
+                id: this.id + 1,
                 num_lvls: this.num_levels,
                 type: 'static',
                 freq: this.frequency,
                 anharmonicity: this.anharmonicity,
                 interaction: this.bath.map(b => b.toJson()),
-                initialization_parameter: this.initialization_parameter
+                initial_state: [1.0, 0.0] //this.initialization_parameter
             }
         };
+        return jsonObject
     }
 
 }
@@ -171,12 +176,18 @@ export class CouplingClass implements Coupling {
     axis2: RotationalAxis;
     frequency: number;
 
-    constructor(qudit1: Qudit, qudit2: Qudit, axis1: RotationalAxis = RotationalAxis.Z, axis2: RotationalAxis = RotationalAxis.Z, frequency: number = 0.01) {
+    constructor(qudit1: Qudit, qudit2: Qudit, axis1: RotationalAxis = RotationalAxis.Z, axis2: RotationalAxis = RotationalAxis.Z, frequency: number = 7.72596981097004e-6) {
         this.qudit1 = qudit1
         this.qudit2 = qudit2
         this.axis1 = axis1;
         this.axis2 = axis2;
         this.frequency = frequency;
     }
-
+    toJSON() {
+        return {
+            "qudits": [this.qudit1.id + 1, this.qudit2.id + 1],
+            "strength": this.frequency,
+            "operator": [this.axis1, this.axis2]
+        }
+    }
 }
